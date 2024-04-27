@@ -9,11 +9,11 @@ Grupo de Alunos | Students group:
 
 Main implemented Mechanichs:
 #Automatic Mechanics:
-  -Player auto shot;
-  -Enemy follow player;
-  -Player auto target nearest enemy;
-  -Enemy spawner;
+ - Player auto shot;
+ - Enemy follow player;
+ - Player auto target nearest enemy;
+ - Enemy spawner;
 #Other Mechanics:
- -Upgrade buttons;
- -Stats feedback;
- -Win and Lose states;
+ - Upgrade buttons;
+ - Stats feedback;
+ - Win and Lose states;
