@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject enemyPrefab; // O prefab do inimigo que você quer instanciar
-    public Transform[] spawnPoints; // Array de spawn points onde os inimigos serão instanciados
-    public Transform playerTransform; // Transform do jogador
-    public float enemySpeed = 5f; // Velocidade dos inimigos
+    public GameObject enemyPrefab; 
+    public Transform[] spawnPoints; 
+    public Transform playerTransform; 
+    public float enemySpeed = 5f; 
+    [SerializeField] private float SpawnInterval;
+    [SerializeField] private int numberOfEnemies;
+    [SerializeField] private int enemiesCount;
 
-    public int numberOfEnemies = 5; // Número de inimigos a serem instanciados
+    //[SerializeField] private int waveNum;
 
     void Start()
     {
-        SpawnEnemies();
+        StartCoroutine(SpawnEnemies(numberOfEnemies, SpawnInterval));
+        enemiesCount = numberOfEnemies;
     }
 
     void Update()
@@ -21,7 +25,7 @@ public class SpawnManager : MonoBehaviour
         MoveEnemiesTowardsPlayer();
     }
 
-    void SpawnEnemies()
+    private IEnumerator SpawnEnemies(int numberOfEnemies, float SpawnInterval)
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
@@ -32,6 +36,24 @@ public class SpawnManager : MonoBehaviour
             GameObject enemy = Instantiate(enemyPrefab, randomSpawnPoint.position, randomSpawnPoint.rotation);
             // Passa a referência do transform do jogador para os inimigos
             enemy.GetComponent<Enemy>().playerTransform = playerTransform;
+            yield return new WaitForSeconds(SpawnInterval);
+        }
+    }
+
+    public void EnemyCounter(int decreaseCount)
+    {
+        enemiesCount += decreaseCount;
+        if (enemiesCount == 0)
+        {
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.Win();
+            }
+            else
+            {
+                Debug.LogError("PlayerController não encontrado na cena!");
+            }
         }
     }
 

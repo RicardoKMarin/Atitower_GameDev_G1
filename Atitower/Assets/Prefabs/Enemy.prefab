@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7651120135398781622}
   - component: {fileID: 3570711889245371478}
   - component: {fileID: -5359015797717987471}
-  m_Layer: 0
+  - component: {fileID: 4173602730693626627}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -30,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.04606, y: 0.0495788, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,9 +75,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  m_Color: {r: 0.754717, g: 0.23851903, b: 0.23851903, a: 1}
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: e2f6652c7b8dd934c92bd34f880e1ca3, type: 3}
+  m_Color: {r: 0.9716981, g: 0.34376112, b: 0.34376112, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -115,14 +116,14 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -130,10 +131,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.25}
-      - {x: -0.5, y: 0}
-      - {x: 0, y: -0.25}
-      - {x: 0.5, y: 0}
+    - - {x: 0.36505342, y: 0.349042}
+      - {x: 0.2120595, y: 0.45919406}
+      - {x: -0.24634087, y: 0.46327025}
+      - {x: -0.4082985, y: 0.3381493}
+      - {x: -0.40454733, y: -0.034999948}
+      - {x: -0.34535384, y: -0.111931086}
+      - {x: -0.34388065, y: -0.31877607}
+      - {x: -0.1637044, y: -0.43194008}
+      - {x: 0.12156558, y: -0.4290571}
+      - {x: 0.31141686, y: -0.30226654}
+      - {x: 0.30870914, y: -0.11018315}
+      - {x: 0.36829853, y: -0.054497182}
   m_UseDelaunayMesh: 0
 --- !u!114 &-5359015797717987471
 MonoBehaviour:
@@ -148,3 +157,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 7557797704061072492, guid: 86242b9ffc3bb2043bbd2e09c56c7bb0, type: 3}
+  maxHealth: 20
+  damage: 10
+  dmgTick: 0.6
+--- !u!50 &4173602730693626627
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2478331402216985304}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
