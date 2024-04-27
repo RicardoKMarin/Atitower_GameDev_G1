@@ -8,12 +8,12 @@ Grupo de Alunos | Students group:
 - Ricardo Marin
 
 Main implemented Mechanichs:
- -Automatic Mechanics:
-  -Player auto shot;
-  -Enemy follow player;
-  -Player auto target nearest enemy;
-  -Enemy spawner;
- -Upgrade buttons;
- -Stats feedback;
- -Win and Lose states;
+ - Automatic Mechanics:
+  - Player auto shot;
+  - Enemy follow player;
+  - Player auto target nearest enemy;
+  - Enemy spawner;
+ - Upgrade buttons;
+ - Stats feedback;
+ - Win and Lose states;
  
