@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -12,12 +13,15 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private int numberOfEnemies;
     [SerializeField] private int enemiesCount;
 
+    [SerializeField] TextMeshProUGUI remainingEnemies;
+
     //[SerializeField] private int waveNum;
 
     void Start()
     {
         StartCoroutine(SpawnEnemies(numberOfEnemies, SpawnInterval));
         enemiesCount = numberOfEnemies;
+        UpdateRemainingEnemies();
     }
 
     void Update()
@@ -43,11 +47,13 @@ public class SpawnManager : MonoBehaviour
     public void EnemyCounter(int decreaseCount)
     {
         enemiesCount += decreaseCount;
+        UpdateRemainingEnemies();
         if (enemiesCount == 0)
         {
             PlayerController playerController = FindObjectOfType<PlayerController>();
             if (playerController != null)
             {
+                remainingEnemies.gameObject.SetActive(false);
                 playerController.Win();
             }
             else
@@ -67,5 +73,10 @@ public class SpawnManager : MonoBehaviour
             Vector3 direction = (playerTransform.position - enemy.transform.position).normalized;
             enemy.transform.Translate(direction * enemySpeed * Time.deltaTime);
         }
+    }
+
+    private void UpdateRemainingEnemies()
+    {
+        remainingEnemies.text = "Enemies Remaining: " + enemiesCount.ToString();
     }
 }

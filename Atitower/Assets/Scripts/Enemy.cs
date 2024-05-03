@@ -50,7 +50,6 @@ public class Enemy : MonoBehaviour
         SpawnManager smanager = FindObjectOfType<SpawnManager>();
         smanager.EnemyCounter(-1);
         Destroy(this.gameObject);
-        Debug.Log("Inimigo morreu");
     }
 
 

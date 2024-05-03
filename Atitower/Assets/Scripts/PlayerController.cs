@@ -21,6 +21,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI gameWinText;
     [SerializeField] TextMeshProUGUI atkSpeedText;
 
+    [Header("Canvas")]
+    [SerializeField] private GameObject canvaStats;
+    [SerializeField] private GameObject canvaUpgradeButtons;
+
+    [Header("Animação fogo")]
+    [SerializeField] private GameObject firePower;
+
     [Header("Projectile Audio")]
     [SerializeField] private AudioClip shotSound;
     [SerializeField] private AudioSource audioSourceShot;
@@ -31,6 +38,8 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         UpdateHealth();
         UpgradeAtkSpeed(0f);
+        canvaStats.SetActive(true);
+        canvaUpgradeButtons.SetActive(true);
     }
 
     public void TakeDamage(float damage)
@@ -47,6 +56,8 @@ public class PlayerController : MonoBehaviour
     {
         healthText.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
+        canvaStats.SetActive(false);
+        canvaUpgradeButtons.SetActive(false);
         Time.timeScale = 0;
         //Debug.Log("Player morreu!");
     }
@@ -55,6 +66,8 @@ public class PlayerController : MonoBehaviour
     {
         healthText.gameObject.SetActive(false);
         gameWinText.gameObject.SetActive(true);
+        canvaStats.SetActive(false);
+        canvaUpgradeButtons.SetActive(false);
         Time.timeScale = 0;
     }
 
@@ -69,6 +82,23 @@ public class PlayerController : MonoBehaviour
             Shoot();
             shootTimer = 1f / atkSpeed; // Define o tempo entre os disparos com base na velocidade de ataque
         }
+
+        {
+            // Ajustar a escala do gameObject firePower com base na variável attackSpeed
+            float scaleFactor = CalculateScaleFactor();
+            Vector3 newScale = Vector3.one * scaleFactor;
+            firePower.transform.localScale = newScale;
+        }
+    }
+
+    float CalculateScaleFactor()
+    {
+        // Lógica para calcular o fator de escala com base na variável attackSpeed
+        // Aqui, você pode implementar sua lógica específica para ajustar a escala
+        // com base na velocidade de ataque atual do seu jogo
+        // Este é um exemplo simples para demonstração
+        float scaleFactor = 1f + atkSpeed * 0.2f; // Ajuste conforme necessário
+        return scaleFactor;
     }
 
     private void Shoot()
@@ -119,10 +149,9 @@ public class PlayerController : MonoBehaviour
 
     public void UpgradeAtkSpeed(float addAtkSpeed)
     {
-        if (atkSpeed <= 5)
-        {
-            atkSpeed += addAtkSpeed;
-            atkSpeedText.text = "ATK SPEED: " + atkSpeed.ToString();
-        }
+        atkSpeed = Mathf.Clamp(atkSpeed += addAtkSpeed, 1f, 5f);
+        //atkSpeed += addAtkSpeed;
+        atkSpeedText.text = "ATK SPEED: " + atkSpeed.ToString("F1");
+        
     }
 }

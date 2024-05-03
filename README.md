@@ -19,3 +19,12 @@ Main implemented Mechanichs:
  - Upgrade buttons;
  - Stats feedback;
  - Win and Lose states;
+
+ #Future Updates:
+ - Implement floating damage feedback numbers;
+ - Implement GameManager;
+ - Implement Menu and Pause;
+ - Implement Waves;
+ - Implement more upgrades and Stats for player;
+ - Implement more enemies and bestiary;
+
